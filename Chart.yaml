@@ -1,0 +1,48 @@
+apiVersion: v2
+name: netbox
+version: 5.0.61
+# renovate: image=ghcr.io/netbox-community/netbox
+appVersion: "v4.2.7"
+type: application
+kubeVersion: ^1.25.0-0
+description: IP address management (IPAM) and data center infrastructure management (DCIM) tool
+home: https://netbox.dev/
+icon: https://raw.githubusercontent.com/netbox-community/netbox/develop/docs/netbox_logo_light.svg
+sources:
+  - https://github.com/netbox-community/netbox
+  - https://github.com/netbox-community/netbox-chart
+maintainers:
+  - name: netbox-community
+    url: https://github.com/netbox-community
+  - name: bootc
+    url: https://github.com/bootc
+dependencies:
+  - name: common
+    repository: oci://registry-1.docker.io/bitnamicharts
+    version: ^2.30.0
+    tags:
+      - bitnami-common
+  - name: postgresql
+    version: ^16.6.3
+    repository: oci://registry-1.docker.io/bitnamicharts
+    condition: postgresql.enabled
+  - name: redis
+    version: ^20.11.5
+    repository: oci://registry-1.docker.io/bitnamicharts
+    condition: redis.enabled
+annotations:
+  artifacthub.io/images: |
+    - name: netbox
+      image: ghcr.io/netbox-community/netbox:v4.2.7
+    - name: busybox
+      image: docker.io/busybox:1.37.0
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |
+    - name: Upstream Project
+      url: https://github.com/netbox-community/netbox
+  artifacthub.io/changes: |
+    - kind: changed
+      description: New release
+      links:
+        - name: Changelog on GitHub Releases
+          url: https://github.com/netbox-community/netbox-chart/releases?q=netbox-
