@@ -22,7 +22,15 @@ helm install netbox oci://ghcr.io/netbox-community/netbox-chart/netbox
 To install the chart with the release name `my-release` and default configuration:
 
 ```shell
-helm install my-release oci://ghcr.io/netbox-community/netbox-chart/netbox
+helm install netbox ./ --namespace netbox --create-namespace
+```
+
+## Superuser
+
+Once the deployment is successful, create a superuser to test out the deployment. Shell into the main pod and run the following.
+
+```shell
+python3 manage.py createsuperuser
 ```
 
 ### Production Usage
